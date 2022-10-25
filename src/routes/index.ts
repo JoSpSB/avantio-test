@@ -4,9 +4,21 @@ const PORT: number = Number(process.env.PORT) || 3000;
 
 const router = Router();
 
-router.get('/', async (_req, res) => {
-  res.send({
-    message: `Server is running on port ${PORT}`,
+router.get('/', async (request, response) => {
+  response.send({
+    message: `Try visiting /feeds to get news from different newspapers.`,
+  });
+});
+
+router.get('/feeds', async (request, response) => {
+  response.send({
+    message: `Under construction! Will return the news from newspapers.`,
+  });
+});
+
+router.post('/feed', async (request, response) => {
+  response.send({
+    message: 'Under construction!',
   });
 });
 

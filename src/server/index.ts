@@ -1,5 +1,6 @@
 import express, { Application, Router, RequestHandler } from 'express';
 import * as http from 'http';
+import bodyParser from 'body-parser';
 
 interface ServerConfiguration {
   port?: number;
@@ -14,6 +15,7 @@ class Server {
 
   constructor(serverConf: ServerConfiguration) {
     this._app = express();
+    this._app.use(bodyParser.json());
     this._port = serverConf.port || 3000;
 
     if (serverConf.middleWares) {
