@@ -17,7 +17,7 @@ router.get('/feeds', async (request, response) => {
   for (const scrapperType of FEED_TYPES) {
     try {
       const scrapper = getScrapper(scrapperType, {});
-      feedsResult.push({ name: scrapper.getName(), news: await scrapper.getFeeds() });
+      feedsResult.push({ name: scrapper.getName(), news: await scrapper.getNews() });
     } catch (err) {
       if (err instanceof Error) {
         return response.status(500).send({ error: err.message });
