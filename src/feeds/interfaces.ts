@@ -13,7 +13,6 @@ export interface IFeed {
 export interface IFeedModel {
   type: string,
   name: string,
-  url: string,
   news: [INews],
   date: Date,
 }

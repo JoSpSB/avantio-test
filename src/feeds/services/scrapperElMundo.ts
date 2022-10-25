@@ -5,14 +5,14 @@ export default class ScrapperElMundo extends Scrapper {
   NAME = 'El Mundo';
   URL = 'https://www.elmundo.es/';
 
-  protected parseNews = (feedArticles: INews[], $: any): INews[] => {
+  protected parseNews = (feedNews: INews[], $: any): INews[] => {
     $('article').each((_idx: number, article: any) => {
       if (_idx >= this._feedAmount) return;
-      const title = $(article).find('header > a > h2')?.text();
-      const text = $(article).find('p')?.text();
-      feedArticles.push({ title, text });
+      const title = $(article).find('header > span')?.text().trim();
+      const text = $(article).find('header > a')?.text().trim();
+      feedNews.push({ title, text });
     });
 
-    return feedArticles;
+    return feedNews;
   };
 }

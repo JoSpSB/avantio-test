@@ -17,7 +17,7 @@ export default class Scrapper {
 
   public getName = (): string => this.NAME;
 
-  protected parseNews = (feedArticles: INews[], $: any): INews[] => {
+  protected parseNews = (feedNews: INews[], $: any): INews[] => {
     throw new Error('Not implemented method!');
   };
 
