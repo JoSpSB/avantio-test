@@ -1,23 +1,15 @@
 import { Schema, model } from 'mongoose';
 
-interface INews {
-  title: string,
-  text: string,
-}
-
-interface IFeed {
-  name: string,
-  url: string,
-  articles: [INews],
-  date: Date,
-}
+import { INews, IFeedModel } from './interfaces';
+import { FEED_TYPES } from './constants';
 
 const articleSchema = new Schema<INews>({
   title: { type: String, required: true },
   text: { type: String, required: false },
 });
 
-const feedSchema = new Schema<IFeed>({
+const feedSchema = new Schema<IFeedModel>({
+  type: { type: String, enum: FEED_TYPES, required: true },
   name: { type: String, required: true },
   url: { type: String, required: true },
   articles: [articleSchema],
