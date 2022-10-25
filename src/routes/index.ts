@@ -1,8 +1,6 @@
 import { Router } from 'express';
 
-import { IFeed } from '../feeds/interfaces';
-import { FEED_TYPES } from '../feeds/constants';
-import { getScrapper } from '../feeds/services';
+import { getFeeds } from '../feeds/services';
 
 const router = Router();
 
@@ -13,20 +11,14 @@ router.get('/', async (request, response) => {
 });
 
 router.get('/feeds', async (request, response) => {
-  const feedsResult: IFeed[] = [];
-  for (const scrapperType of FEED_TYPES) {
-    try {
-      const scrapper = getScrapper(scrapperType, {});
-      feedsResult.push({ name: scrapper.getName(), news: await scrapper.getNews() });
-    } catch (err) {
-      if (err instanceof Error) {
-        return response.status(500).send({ error: err.message });
-      }
-      return response.status(500).send({ error: 'Unknown error' });
+  try {
+    return response.send({ data: await getFeeds() });
+  } catch (err) {
+    if (err instanceof Error) {
+      return response.status(500).send({ error: err.message });
     }
+    return response.status(500).send({ error: 'Unknown error' });
   }
-
-  return response.send({ data: feedsResult });
 });
 
 router.post('/feed', async (request, response) => {

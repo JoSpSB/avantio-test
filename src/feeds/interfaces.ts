@@ -1,18 +1,20 @@
-export interface INew {
+export interface INews {
   title: string,
   text: string,
 }
 
 export interface IFeed {
+  type: string,
   name: string,
-  news: INew[],
+  news: INews[],
+  date: Date,
 }
 
 export interface IFeedModel {
   type: string,
   name: string,
   url: string,
-  articles: [INew],
+  news: [INews],
   date: Date,
 }
 

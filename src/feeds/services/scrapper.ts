@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { load } from 'cheerio';
 
-import { INew, IScrapper } from '../interfaces';
+import { INews, IScrapper } from '../interfaces';
 
 export default class Scrapper {
   static NAME: string;
@@ -17,12 +17,12 @@ export default class Scrapper {
 
   public getName = (): string => this.NAME;
 
-  protected parseNews = (feedArticles: INew[], $: any): INew[] => {
+  protected parseNews = (feedArticles: INews[], $: any): INews[] => {
     throw new Error('Not implemented method!');
   };
 
-  public getNews = async (): Promise<INew[]> => {
-    const news: INew[] = [];
+  public getNews = async (): Promise<INews[]> => {
+    const news: INews[] = [];
     const { data } = await axios.get(this.URL);
     const $ = load(data);
 
