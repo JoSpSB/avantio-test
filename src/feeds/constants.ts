@@ -1,4 +1,6 @@
+export const EL_PAIS = 'elpais';
+export const EL_MUNDO = 'elmundo';
 export const FEED_TYPES = [
-  'elpais',
-  'elmundo',
+  EL_PAIS,
+  EL_MUNDO,
 ];

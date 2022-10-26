@@ -1,5 +1,6 @@
-import { getFeeds } from './services';
+import { getFeeds, getScrapper } from './services';
 
  export {
   getFeeds,
+  getScrapper,
 };

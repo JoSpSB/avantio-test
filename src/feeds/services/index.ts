@@ -23,13 +23,18 @@ export const getFeeds = async () => {
   const feedsResult: IFeed[] = [];
 
   for (const scrapperType of FEED_TYPES) {
-    const scrapper = getScrapper(scrapperType, {});
-    const feedData = { type: scrapperType, name: scrapper.getName(), news: await scrapper.getNews(), date: new Date() }
+    try {
+      const scrapper = getScrapper(scrapperType, {});
+      const feedData = { type: scrapperType, name: scrapper.getName(), news: await scrapper.getNews(), date: new Date() }
 
-    const feed = new Feed(feedData);
-    feed.save();
+      const feed = new Feed(feedData);
+      feed.save();
 
-    feedsResult.push(feedData);
+      feedsResult.push(feedData);
+    } catch (error) {
+      // Log error and continue.
+      continue;
+    }
   }
 
   return feedsResult;
