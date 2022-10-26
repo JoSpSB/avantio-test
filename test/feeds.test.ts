@@ -4,9 +4,9 @@ import axios from 'axios';
 import Database from '../src/db';
 import { getFeeds, getScrapper } from '../src/feeds';
 import { EL_PAIS, EL_MUNDO } from '../src/feeds/constants';
-import Scrapper from '../src/feeds/services/scrapper';
-import ScrapperElPais from '../src/feeds/services/scrapperElPais';
-import ScrapperElMundo from '../src/feeds/services/scrapperElMundo';
+import Scrapper from '../src/feeds/services/scrappers/scrapper';
+import ScrapperElPais from '../src/feeds/services/scrappers/scrapperElPais';
+import ScrapperElMundo from '../src/feeds/services/scrappers/scrapperElMundo';
 
 let db: Database;
 

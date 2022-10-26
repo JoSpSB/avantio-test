@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { INews, IScrapper } from '../interfaces';
+import { INews, IScrapper } from '../../interfaces';
 
 export default class Scrapper {
   static NAME: string;

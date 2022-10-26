@@ -1,10 +1,10 @@
 import { IFeed, IScrapper } from '../interfaces';
-import Scrapper from './scrapper';
+import Scrapper from './scrappers/scrapper';
 import Errors from '../errors';
 import { FEED_TYPES } from '../../feeds/constants';
 
-import ScrapperElPais from './scrapperElPais';
-import ScrapperElMundo from './scrapperElMundo';
+import ScrapperElPais from './scrappers/scrapperElPais';
+import ScrapperElMundo from './scrappers/scrapperElMundo';
 
 import Feed from '../model';
 
