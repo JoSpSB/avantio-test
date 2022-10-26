@@ -1,14 +1,20 @@
 import { Schema, model } from 'mongoose';
 
-import { INews, IFeedModel } from './interfaces';
+import { INews, IFeed } from './interfaces';
 import { FEED_TYPES } from './constants';
 
+/**
+ * Sub-document representing each daily trends.
+ */
 const newsSchema = new Schema<INews>({
   title: { type: String, required: true },
   text: { type: String, required: false },
 }, { _id : false });
 
-const feedSchema = new Schema<IFeedModel>({
+/**
+ * Feed document.
+ */
+const feedSchema = new Schema<IFeed>({
   type: { type: String, enum: FEED_TYPES, required: true },
   name: { type: String, required: true },
   news: [newsSchema],

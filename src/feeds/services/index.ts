@@ -1,13 +1,18 @@
-import { IFeed, IScrapper } from '../interfaces';
-import Scrapper from './scrappers/scrapper';
 import Errors from '../errors';
+import Feed from '../model';
+import { IFeed, IScrapper } from '../interfaces';
 import { FEED_TYPES } from '../../feeds/constants';
 
+import Scrapper from './scrappers/scrapper';
 import ScrapperElPais from './scrappers/scrapperElPais';
 import ScrapperElMundo from './scrappers/scrapperElMundo';
 
-import Feed from '../model';
-
+/**
+ * Get specific scrapper type.
+ * @param scrapperType 
+ * @param scrapperConf 
+ * @returns Scrapper
+ */
 export const getScrapper = (scrapperType: string, scrapperConf: IScrapper): Scrapper => {
   switch (scrapperType) {
     case 'elpais':
@@ -19,6 +24,10 @@ export const getScrapper = (scrapperType: string, scrapperConf: IScrapper): Scra
   }
 }
 
+/**
+ * Get feeds from all available scrappers.
+ * @returns Feed
+ */
 export const getFeeds = async () => {
   const feedsResult: IFeed[] = [];
 

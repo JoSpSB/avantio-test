@@ -8,6 +8,9 @@ interface ServerConfiguration {
   routes?: Router[];
 }
 
+/**
+ * Server to expose the API.
+ */
 class Server {
   private _app: Application;
   private _port: number;
@@ -27,14 +30,25 @@ class Server {
     }
   }
 
+  /**
+   * Use configured middlewares.
+   * @param middleWares 
+   */
   private _middlewares(middleWares: RequestHandler[]) {
     middleWares.forEach((middleWare) => this._app.use(middleWare));
   }
 
+  /**
+   * Use defined routes.
+   * @param routes 
+   */
   private _routes(routes: Router[]) {
     routes.forEach((route) => this._app.use(route));
   }
 
+  /**
+   * Start the server listening on specific port.
+   */
   public listen() {
     this._server = http.createServer(this._app);
     this._server.listen(this._port, () => {

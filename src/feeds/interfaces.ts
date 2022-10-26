@@ -10,13 +10,6 @@ export interface IFeed {
   date: Date,
 }
 
-export interface IFeedModel {
-  type: string,
-  name: string,
-  news: [INews],
-  date: Date,
-}
-
 export interface IScrapper {
   feedAmount?: number,
 }
