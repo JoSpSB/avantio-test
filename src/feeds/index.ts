@@ -1,5 +1,5 @@
-import Feed from './model';
+import { getFeeds } from './services';
 
-export {
-  Feed,
+ export {
+  getFeeds,
 };

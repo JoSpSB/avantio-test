@@ -17,14 +17,18 @@ class Database {
     this._dbName = databaseConfig.dbName;
   }
 
-  public connect() {
-    mongoose.connect(`${this._uri}:${this._port}/${this._dbName}`, { autoCreate: true });
-    const db = mongoose.connection;
+  public connect(): Promise<typeof mongoose> {
+    return mongoose.connect(`${this._uri}:${this._port}/${this._dbName}`, { autoCreate: true });
+  }
 
-    db.on('error', console.error.bind(console, 'connection error: '));
-    db.once('open', () => {
-      console.log('Database connected successfully!');
+  public async dropCollection(collection: string, cb: CallableFunction) {
+    mongoose.connection.dropCollection(collection, () => {
+      cb();
     });
+  }
+
+  public close(): Promise<void> {
+    return mongoose.disconnect();
   }
 }
 

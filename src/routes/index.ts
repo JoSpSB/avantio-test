@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { getFeeds } from '../feeds/services';
+import { getFeeds } from '../feeds';
 
 const router = Router();
 

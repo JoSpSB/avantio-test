@@ -8,7 +8,7 @@ import ScrapperElMundo from './scrapperElMundo';
 
 import Feed from '../model';
 
-export function getScrapper(scrapperType: string, scrapperConf: IScrapper): Scrapper {
+export const getScrapper = (scrapperType: string, scrapperConf: IScrapper): Scrapper => {
   switch (scrapperType) {
     case 'elpais':
       return new ScrapperElPais(scrapperConf);
@@ -19,14 +19,16 @@ export function getScrapper(scrapperType: string, scrapperConf: IScrapper): Scra
   }
 }
 
-export async function getFeeds() {
+export const getFeeds = async () => {
   const feedsResult: IFeed[] = [];
 
   for (const scrapperType of FEED_TYPES) {
     const scrapper = getScrapper(scrapperType, {});
     const feedData = { type: scrapperType, name: scrapper.getName(), news: await scrapper.getNews(), date: new Date() }
+
     const feed = new Feed(feedData);
     feed.save();
+
     feedsResult.push(feedData);
   }
 
